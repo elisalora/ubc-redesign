@@ -1,7 +1,7 @@
 # UBC landing page — redesign study
 
-A single self-contained `index.html` (no build step, no framework) plus local image
-assets. Open it directly in a browser, or `python3 -m http.server` from this folder.
+A single self-contained `index.html` (no build step, no framework) plus local assets.
+Open it directly in a browser, or `python3 -m http.server` from this folder.
 
 Not affiliated with Universal Ballet Competition. This is a design study built from
 their public site for review.
@@ -10,45 +10,60 @@ their public site for review.
 
 **Live inside their navy instead of floating on white.** Every competition photograph
 UBC owns is shot against the same lit navy cyclorama with their monogram on it. Make the
-page ground that exact navy and the photographs stop being pictures pasted onto a page —
-the page becomes the backdrop they were shot against.
+page ground that navy and the photographs stop being pictures pasted onto a page — the
+page becomes the backdrop they were shot against.
+
+And **their navy is not flat.** Their hero is a radial glow running from `#003D7B` at the
+lit corner down to `#001D3C` at the far edge, like a spotlight raking a cyc. That glow is
+what reads as shimmer. A flat navy loses it, which is exactly what the first pass did.
 
 | Token | Value | Where it came from |
 |---|---|---|
 | `--navy` | `#002862` | Measured three ways: their markup, their OG image (`#002863` after JPEG), and the `UBC-Logo-Blue.png` pixels (`rgb(0,40,98)`) |
-| `--navy-deep` | `#001533` | Derived, for scrims and the footer |
-| `--gold` | `#c9a24b` | **Added.** See below |
-| `--paper` | `#f4f1ea` | **Added.** One warm light band |
+| `--glow-hi` / `--glow-lo` | `#00407f` / `#001a38` | Sampled off their live hero render (`#003D7B` → `#001D3C`) |
+| `--star` | `#59a0ef` | **Theirs.** The exact blue of the type in their tour graphic |
+| `--star-hi` | `#9cc6f5` | Lifted, for type that has to hold on navy |
+| `--silver` / `--slate` | `#c6d2e3` / `#3762a1` | Their ribbon greys; their button blue, measured |
+| `--paper` | `#f4f1ea` | One warm light band, at the sponsors |
 
 **Type.** Display is Playfair Display — a Didone with the same thick/thin contrast as the
-UBC monogram's own letterforms. UI and body are Jost, set in wide-tracked uppercase for
-labels, matching the `UNIVERSAL BALLET COMPETITION` lockup under their mark.
+UBC monogram's own letterforms. UI and body are Jost, wide-tracked uppercase for labels,
+matching the `UNIVERSAL BALLET COMPETITION` lockup under their mark.
 
-**Gold is the one addition.** Navy and white alone give nothing to prioritise with, which
-is exactly why the current page has no visual hierarchy — every element shouts at the same
-volume. One accent, used only for the register CTA, section numerals, hairlines and "open"
-status, buys a hierarchy. It is also the correct accent for an organisation whose entire
-purpose is awarding scholarships, and which currently signals that nowhere.
+**There is no gold.** An earlier pass introduced a medal gold as an accent. That was an
+import, not an observation — their site does not contain a single gold pixel. The accent
+is their own cornflower `#59a0ef` plus real metallic silver.
 
-**Paper is the second addition,** used once. Sponsor logos are drawn for light grounds —
-UBC's own file is literally named `VB_LogoHorColorLightBkgd` — and eight navy sections in
-a row need one breath.
+## Shimmer, and where it comes from
+
+Five effects, all slow and specular rather than glittery. Every one is disabled or stilled
+under `prefers-reduced-motion`.
+
+1. **The sky** — a fixed radial glow behind the whole page, so the light stays put while
+   the page scrolls past it, the way a spotlight does on a real cyc.
+2. **Starfield** — three parallax layers (`assets/stars-*.svg`), each on its own twinkle
+   period. Generated deterministically from fixed seeds so the field is identical every
+   build and screenshots stay comparable.
+3. **Ribbon sweeps** — UBC's signature graphic, layered translucent silver bands raking
+   across the frame. Theirs *cross* at different angles; parallel bands read as venetian
+   blinds, which the first attempt at this did. Each band breathes on its own delay so
+   light appears to travel along the satin rather than the block pulsing as one.
+4. **Sheen** — a metallic gradient clipped to text and swept slowly across it, on the
+   headline accent and the section numerals. Ramped toward their star blue so it separates
+   from the white headline instead of reading as greyed-out.
+5. **Polished-silver primary button** with a specular pass on hover.
 
 ## Facts on this page
 
-Every claim is either verbatim from UBC's own site or visibly marked `TBC`. Nothing is
-invented.
+Every claim is either verbatim from UBC's own site or visibly marked `TBC`.
 
-- **The 16-city schedule** was read out of the markup of `/semi-finals/`, not out of a
-  summariser. A summarising fetch of the same page got three dates wrong (San Francisco,
-  Dayton and the April Chicago), which is why it was re-read directly.
-- **Registration statuses** (Palm Beach Gardens, Chicago ×2, Houston) are from that same
-  markup. These are live values and should be wired to real data, not typed in.
-- **`TBC` chips** mark real gaps: dancer count, scholarship total, Grand Prix Finals dates.
+- **The 16-city schedule** was read out of the markup of `/semi-finals/`. A summarising
+  fetch of the same page got three dates wrong (San Francisco, Dayton, the April Chicago)
+  and invented registration statuses, which is why it was re-read directly.
+- **Grand Prix Finals — Iowa City, IA, May 26–30, 2027** came off their own tour graphic.
+- **`TBC` chips** mark the two real remaining gaps: dancer count and scholarship total.
 
 ## Things that are derived, not typed
-
-Three pieces of state are computed so they cannot rot the way the live site's have:
 
 - **Past / happening-now / upcoming** per competition, from each row's own `data-start`
   and `data-end`.
@@ -57,25 +72,36 @@ Three pieces of state are computed so they cannot rot the way the live site's ha
 - **The footer copyright year.**
 
 The live site's banner still advertises a registration date in July and its footer still
-reads ©2024. Both are the kind of fact a person has to remember to change. Here nobody
-has to.
+reads ©2024. Both are facts a person has to remember to change. Here nobody has to.
 
-## Defects found on the live site
+## Defects on the live site
+
+Confirmed:
 
 1. Banner reads "Registration for 2026-2027 Season opens **July 15**" (checked 16 Oct 2026).
 2. Footer reads **©2024**.
 3. Footer "Email us" points to `http://mjn.ndi.mybluehost.me/contact-minimal/` — the
    Bluehost staging hostname, in production, over plain HTTP.
 4. Two contact buttons, two URLs: `/CONTACT` and `/contact`.
-5. The season tour graphic (`2025-2026-SEASON-19.png`) is a half-finished image: the dates
-   column never rendered, and Chicago is spelled **CHICAG0** with a zero. It is also the
-   only place the tour appears on the home page — as a flat image, so it is invisible to
-   search and to screen readers.
+5. In the tour graphic: **CHICAG0** spelled with a zero, and **FEBUARY** misspelled twice.
 6. Registration status is baked into the city *name* string ("Chicago, IL- SOLD OUT")
    rather than held as its own field.
-7. No date, city, age division, deadline or fee anywhere on the landing page.
+7. The whole season is a flat PNG — invisible to search, to screen readers, and to anyone
+   who wants to link to one city.
 
-## One bug fixed during the build, worth remembering
+**Retracted** — two earlier findings here were wrong, and the error is worth keeping
+written down:
+
+- I claimed their tour graphic was half-finished with the dates column missing. It is not.
+  The dates are **white text in a transparent PNG**, invisible against the white I
+  previewed the file on, correct against their navy.
+- I therefore claimed no dates appeared on the landing page. They do, in the hero.
+
+Both wrong claims shared a tell: each required a competent person to have shipped
+something obviously broken. Cloudflare blocked `curl`, so the page was rebuilt from
+archived markup without ever being looked at. Render the thing before calling it broken.
+
+## One bug fixed during the build
 
 The mobile drawer is `position:fixed`, but `backdrop-filter` on the sticky nav makes that
 nav a **containing block for fixed descendants** — so the drawer sized itself to the nav
@@ -85,9 +111,9 @@ the fix and passes after, so it has a real discriminator.
 
 ## Still open
 
-- Grand Prix Finals and Asia Pacific Grand Prix Finals dates.
+- Asia Pacific Grand Prix Finals dates.
 - Real numbers behind "countless dancers" and "millions of dollars".
-- Venue names per city — worth having; a parent books a hotel off them.
+- Venue names per city — a parent books a hotel off them.
 - Age divisions and entry fees.
 - Photography is UBC's own, pulled from their site for this study. Any public deployment
   needs their say-so.
