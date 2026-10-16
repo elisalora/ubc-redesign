@@ -1,0 +1,283 @@
+<main id="main">
+
+<!-- ══ HERO ══════════════════════════════════════════════════ -->
+<section class="hero" data-shot="01-hero">
+  <div class="hero__media">
+    <img src="assets/img/hero-jete.jpg" alt="A dancer in a pink romantic tutu at the top of a grand jeté, against the Universal Ballet Competition backdrop." width="1536" height="1024" fetchpriority="high">
+  </div>
+  <div class="hero__scrim"></div>
+  <svg class="ribbon" viewBox="0 0 1600 120" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <polygon fill="#dbe6f5" fill-opacity=".22" points="0,6 1600,34 1600,64 0,36"/>
+      <polygon fill="#7f93b2" fill-opacity=".30" points="0,30 1600,80 1600,100 0,48"/>
+      <polygon fill="#ffffff" fill-opacity=".26" points="0,74 1600,8 1600,26 0,92"/>
+      <polygon fill="#9fb3cf" fill-opacity=".26" points="0,120 1600,46 1600,76 0,120"/>
+      <polygon fill="#ffffff" fill-opacity=".55" points="0,58 1600,48 1600,53 0,63"/>
+    </svg>
+  <div class="wrap hero__inner">
+    <p class="eyebrow">2026 &ndash; 2027 Season &nbsp;·&nbsp; 16 Cities</p>
+    <h1>Take your place on the <em class="sheen">world stage.</em></h1>
+    <p class="lede">The world&rsquo;s top student ballet competition &mdash; master classes, scholarships and international opportunities for young dancers.</p>
+    <div class="hero__cta">
+      <a class="btn btn--silver" href="https://reg.universalballetcompetition.com/">Register for 2026&ndash;27 <span class="arr">&rarr;</span></a>
+      <a class="btn btn--ghost" href="#season">See the season</a>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT UP — written by script from the schedule below, single source of truth -->
+<div class="nextup" id="nextup" hidden>
+  <div class="wrap">
+    <dl>
+      <div><dt id="nu-label">Next competition</dt><dd id="nu-city">&mdash;</dd></div>
+      <div><dt>Dates</dt><dd id="nu-date">&mdash;</dd></div>
+      <div><dt>Registration</dt><dd class="status" id="nu-status">&mdash;</dd></div>
+    </dl>
+    <a class="more" href="#season">All 16 competitions &rarr;</a>
+  </div>
+</div>
+
+<!-- ══ STATEMENT ═════════════════════════════════════════════ -->
+<section class="pad statement" data-shot="02-statement">
+  <div class="wrap">
+    <div class="inner rv">
+      <hr class="rule">
+      <p>UBC is more than a competition. It is a transformative experience designed to inspire, educate, and launch the next generation of ballet artists &mdash; <span class="dim">with world-class adjudicators, unparalleled opportunities, and a commitment to excellence.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PILLARS ═══════════════════════════════════════════════ -->
+<section class="pad pillars" style="padding-top:0" data-shot="03-pillars">
+  <div class="wrap">
+    <div class="sechead rv">
+      <div>
+        <p class="eyebrow">What happens at UBC</p>
+        <h2>Three ways a dancer moves forward.</h2>
+      </div>
+    </div>
+    <div class="grid">
+
+      <a class="pillar rv" href="https://universalballetcompetition.com/semi-finals/">
+        <img src="assets/img/winner-male.jpg" alt="A young male dancer in a grand jeté during a UBC semi-final." loading="lazy">
+        <div class="pillar__body">
+          <span class="pillar__num">01</span>
+          <h3>Semi-Finals</h3>
+          <p>Sixteen cities across the season. Dance for adjudication in front of company and school directors, and qualify for the Grand Prix Finals.</p>
+          <span class="go">Learn more <span class="arr">&rarr;</span></span>
+        </div>
+        <span class="pillar__edge"></span>
+      </a>
+
+      <a class="pillar rv" href="https://universalballetcompetition.com/master-class/">
+        <img src="assets/img/ensemble.jpg" alt="Four dancers in black holding an arabesque together on the UBC stage." loading="lazy" style="object-position:62% 46%">
+        <div class="pillar__body">
+          <span class="pillar__num">02</span>
+          <h3>Master Classes</h3>
+          <p>Taught at every UBC competition by globally renowned dancers, company directors and ballet school directors.</p>
+          <span class="go">Learn more <span class="arr">&rarr;</span></span>
+        </div>
+        <span class="pillar__edge"></span>
+      </a>
+
+      <a class="pillar rv" href="https://universalballetcompetition.com/grand-prix/">
+        <img src="assets/img/hero-jete.jpg" alt="A dancer suspended mid-leap in a pink tutu at the Grand Prix Finals." loading="lazy" style="object-position:46% 42%">
+        <div class="pillar__body">
+          <span class="pillar__num">03</span>
+          <h3>Grand Prix Finals</h3>
+          <p>The end of the road, and the start of one. Scholarships and international opportunities, decided on the Grand Prix stage.</p>
+          <span class="go">Learn more <span class="arr">&rarr;</span></span>
+        </div>
+        <span class="pillar__edge"></span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ SEASON ════════════════════════════════════════════════ -->
+<section class="pad season" id="season" data-shot="04-season">
+  <div class="wrap">
+    <div class="sechead rv">
+      <div>
+        <p class="eyebrow">2026 &ndash; 2027 Semi-Finals</p>
+        <h2>Sixteen cities. One road to the Finals.</h2>
+      </div>
+      <a class="btn btn--ghost" href="https://reg.universalballetcompetition.com/">Register <span class="arr">&rarr;</span></a>
+    </div>
+
+    <div class="season__list rv" id="sched">
+      <!-- data-start / data-end drive the live / past states, so nothing here can go stale -->
+      <a class="ev" href="https://universalballetcompetition.com/semi-finals/" data-start="2026-10-16" data-end="2026-10-18">
+        <span class="ev__n">01</span><span class="ev__city">San Francisco, CA</span>
+        <span class="ev__date">October 16&ndash;18, 2026</span><span class="ev__tag"></span><span class="ev__go">Details &rarr;</span></a>
+
+      <a class="ev" href="https://universalballetcompetition.com/semi-finals/" data-start="2026-10-23" data-end="2026-10-25">
+        <span class="ev__n">02</span><span class="ev__city">Dayton, OH</span>
+        <span class="ev__date">October 23&ndash;25, 2026</span><span class="ev__tag"></span><span class="ev__go">Details &rarr;</span></a>
+
+      <a class="ev" href="https://universalballetcompetition.com/semi-finals/" data-start="2027-01-15" data-end="2027-01-17">
+        <span class="ev__n">03</span><span class="ev__city">Denver, CO</span>
+        <span class="ev__date">January 15&ndash;17, 2027</span><span class="ev__tag"></span><span class="ev__go">Details &rarr;</span></a>
+
+      <a class="ev" href="https://universalballetcompetition.com/semi-finals/" data-start="2027-01-29" data-end="2027-01-31">
+        <span class="ev__n">04</span><span class="ev__city">Manchester, NH</span>
+        <span class="ev__date">January 29&ndash;31, 2027</span><span class="ev__tag"></span><span class="ev__go">Details &rarr;</span></a>
+
+      <a class="ev" href="https://universalballetcompetition.com/semi-finals/" data-start="2027-01-29" data-end="2027-01-31">
+        <span class="ev__n">05</span><span class="ev__city">Bartlett, TN</span>
+        <span class="ev__date">January 29&ndash;31, 2027</span><span class="ev__tag"></span><span class="ev__go">Details &rarr;</span></a>
+
+      <a class="ev" href="https://universalballetcompetition.com/semi-finals/" data-start="2027-02-12" data-end="2027-02-14" data-status="wait">
+        <span class="ev__n">06</span><span class="ev__city">Palm Beach Gardens, FL</span>
+        <span class="ev__date">February 12&ndash;14, 2027</span><span class="ev__tag"></span><span class="ev__go">Details &rarr;</span></a>
+
+      <a class="ev" href="https://universalballetcompetition.com/semi-finals/" data-start="2027-02-12" data-end="2027-02-14">
+        <span class="ev__n">07</span><span class="ev__city">Austin, TX</span>
+        <span class="ev__date">February 12&ndash;14, 2027</span><span class="ev__tag"></span><span class="ev__go">Details &rarr;</span></a>
+
+      <a class="ev" href="https://universalballetcompetition.com/semi-finals/" data-start="2027-02-19" data-end="2027-02-21">
+        <span class="ev__n">08</span><span class="ev__city">Pittsburgh, PA</span>
+        <span class="ev__date">February 19&ndash;21, 2027</span><span class="ev__tag"></span><span class="ev__go">Details &rarr;</span></a>
+
+      <a class="ev" href="https://universalballetcompetition.com/semi-finals/" data-start="2027-02-19" data-end="2027-02-21" data-status="sold">
+        <span class="ev__n">09</span><span class="ev__city">Chicago, IL</span>
+        <span class="ev__date">February 19&ndash;21, 2027</span><span class="ev__tag"></span><span class="ev__go">Details &rarr;</span></a>
+
+      <a class="ev" href="https://universalballetcompetition.com/semi-finals/" data-start="2027-03-19" data-end="2027-03-21">
+        <span class="ev__n">10</span><span class="ev__city">Iowa City, IA</span>
+        <span class="ev__date">March 19&ndash;21, 2027</span><span class="ev__tag"></span><span class="ev__go">Details &rarr;</span></a>
+
+      <a class="ev" href="https://universalballetcompetition.com/semi-finals/" data-start="2027-03-25" data-end="2027-03-27">
+        <span class="ev__n">11</span><span class="ev__city">Irvine, CA</span>
+        <span class="ev__date">March 25&ndash;27, 2027</span><span class="ev__tag"></span><span class="ev__go">Details &rarr;</span></a>
+
+      <a class="ev" href="https://universalballetcompetition.com/semi-finals/" data-start="2027-04-02" data-end="2027-04-04">
+        <span class="ev__n">12</span><span class="ev__city">Atlanta, GA</span>
+        <span class="ev__date">April 2&ndash;4, 2027</span><span class="ev__tag"></span><span class="ev__go">Details &rarr;</span></a>
+
+      <a class="ev" href="https://universalballetcompetition.com/semi-finals/" data-start="2027-04-02" data-end="2027-04-04">
+        <span class="ev__n">13</span><span class="ev__city">Jacksonville, FL</span>
+        <span class="ev__date">April 2&ndash;4, 2027</span><span class="ev__tag"></span><span class="ev__go">Details &rarr;</span></a>
+
+      <a class="ev" href="https://universalballetcompetition.com/semi-finals/" data-start="2027-04-16" data-end="2027-04-18" data-status="wait">
+        <span class="ev__n">14</span><span class="ev__city">Chicago, IL</span>
+        <span class="ev__date">April 16&ndash;18, 2027</span><span class="ev__tag"></span><span class="ev__go">Details &rarr;</span></a>
+
+      <a class="ev" href="https://universalballetcompetition.com/semi-finals/" data-start="2027-04-23" data-end="2027-04-25" data-status="wait">
+        <span class="ev__n">15</span><span class="ev__city">Houston, TX</span>
+        <span class="ev__date">April 23&ndash;25, 2027</span><span class="ev__tag"></span><span class="ev__go">Details &rarr;</span></a>
+
+      <a class="ev" href="https://universalballetcompetition.com/semi-finals/" data-start="2027-04-30" data-end="2027-05-02">
+        <span class="ev__n">16</span><span class="ev__city">Raleigh, NC</span>
+        <span class="ev__date">April 30 &ndash; May 2, 2027</span><span class="ev__tag"></span><span class="ev__go">Details &rarr;</span></a>
+    </div>
+
+    <a class="ev ev--finals rv" href="https://universalballetcompetition.com/grand-prix/" data-start="2027-05-26" data-end="2027-05-30">
+      <span class="ev__n">&#9733;</span><span class="ev__city">Grand Prix Finals <span class="st">Iowa City, IA</span></span>
+      <span class="ev__date">May 26&ndash;30, 2027</span><span class="ev__tag"></span><span class="ev__go">Details &rarr;</span></a>
+
+    <div class="season__foot rv">
+      <p class="season__note">Asia Pacific Grand Prix Finals dates <span class="tbc">TBC</span></p>
+      <a class="btn btn--ghost" href="https://universalballetcompetition.com/rules-and-regulations/">Rules &amp; regulations</a>
+    </div>
+  </div>
+</section>
+
+<div class="ribbon-divider" aria-hidden="true"><svg class="ribbon" viewBox="0 0 1600 120" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <polygon fill="#dbe6f5" fill-opacity=".22" points="0,6 1600,34 1600,64 0,36"/>
+      <polygon fill="#7f93b2" fill-opacity=".30" points="0,30 1600,80 1600,100 0,48"/>
+      <polygon fill="#ffffff" fill-opacity=".26" points="0,74 1600,8 1600,26 0,92"/>
+      <polygon fill="#9fb3cf" fill-opacity=".26" points="0,120 1600,46 1600,76 0,120"/>
+      <polygon fill="#ffffff" fill-opacity=".55" points="0,58 1600,48 1600,53 0,63"/>
+    </svg></div>
+
+<!-- ══ FOUNDERS ══════════════════════════════════════════════ -->
+<section class="pad founders" data-shot="05-founders">
+  <div class="wrap">
+    <div class="cols">
+      <div class="rv">
+        <p class="eyebrow">Who we are</p>
+        <blockquote style="margin-top:1.1em"><span class="mark">&ldquo;</span>UBC&rsquo;s mission with each class and competition is ultimately the growth of each dancer as an individual.<span class="mark">&rdquo;</span></blockquote>
+        <p class="by">Lissette Salgado &amp; David Lucas &nbsp;·&nbsp; Founders</p>
+        <ul class="names">
+          <li><strong>Lissette Salgado</strong><span>Former principal dancer, Joffrey Ballet</span></li>
+          <li><strong>David Lucas</strong><span>Former principal dancer, Royal Winnipeg Ballet</span></li>
+        </ul>
+      </div>
+      <div class="rv">
+        <p>Founding members Lissette Salgado and David Lucas, former principal dancers of the Joffrey Ballet and the Royal Winnipeg Ballet, have illustrious careers. Their combined list of professional contacts allows them the privilege to recruit globally renowned dancers, company directors and ballet school directors to judge, mentor and teach the master classes during each UBC competition.</p>
+        <p>Since its first season, UBC has hosted and mentored countless dancers and awarded millions of dollars in scholarships. UBC is more than a competition &mdash; it is a chance for dancers to reach their goals, and we look forward to having you be part of it.</p>
+        <p style="margin-top:2em"><a class="btn btn--ghost" href="https://universalballetcompetition.com/about/">More about UBC <span class="arr">&rarr;</span></a></p>
+      </div>
+    </div>
+
+    <div class="record rv">
+      <div class="stat"><span class="n">16</span><span class="l">Cities, 2026&ndash;27 season</span></div>
+      <div class="stat"><span class="n"><span class="tbc">TBC</span></span><span class="l">Dancers hosted &amp; mentored</span></div>
+      <div class="stat"><span class="n"><span class="tbc">TBC</span></span><span class="l">Awarded in scholarships</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SPONSORS ══════════════════════════════════════════════ -->
+<section class="pad sponsors" data-shot="06-sponsors">
+  <div class="wrap">
+    <div class="sechead rv" style="margin-bottom:0">
+      <div>
+        <p class="eyebrow">Scholarships &amp; sponsors</p>
+        <h2>The people who fund the prize.</h2>
+      </div>
+      <a class="btn btn--dark" href="https://universalballetcompetition.com/sponsors/">All sponsors <span class="arr">&rarr;</span></a>
+    </div>
+
+    <div class="tier rv">
+      <p class="tier__label">Title Sponsors</p>
+      <div class="title-row">
+        <img src="assets/img/TitleSponsor-1.jpeg" alt="UBC title sponsor" loading="lazy">
+        <img src="assets/img/TitleSponsor-3.jpeg" alt="UBC title sponsor" loading="lazy">
+        <img src="assets/img/VB_LogoHorColorLightBkgd-1024x371.png" alt="UBC title sponsor" loading="lazy">
+      </div>
+    </div>
+
+    <div class="tier rv">
+      <p class="tier__label">Scholarship Sponsors</p>
+      <div class="sch-grid">
+        <img src="assets/img/sch_1.jpg"  alt="UBC scholarship sponsor" loading="lazy">
+        <img src="assets/img/sch_2.jpg"  alt="UBC scholarship sponsor" loading="lazy">
+        <img src="assets/img/sch_4.jpg"  alt="UBC scholarship sponsor" loading="lazy">
+        <img src="assets/img/sch_5.jpg"  alt="UBC scholarship sponsor" loading="lazy">
+        <img src="assets/img/sch_6.jpg"  alt="UBC scholarship sponsor" loading="lazy">
+        <img src="assets/img/sch_7.jpg"  alt="UBC scholarship sponsor" loading="lazy">
+        <img src="assets/img/sch_8.jpg"  alt="UBC scholarship sponsor" loading="lazy">
+        <img src="assets/img/sch_9.jpg"  alt="UBC scholarship sponsor" loading="lazy">
+        <img src="assets/img/sch_10.jpg" alt="UBC scholarship sponsor" loading="lazy">
+        <img src="assets/img/sch_11.jpg" alt="UBC scholarship sponsor" loading="lazy">
+        <img src="assets/img/sch_12.jpg" alt="UBC scholarship sponsor" loading="lazy">
+        <img src="assets/img/sch_13.jpg" alt="UBC scholarship sponsor" loading="lazy">
+        <img src="assets/img/sch_14.jpg" alt="UBC scholarship sponsor" loading="lazy">
+        <img src="assets/img/sch_16.jpg" alt="UBC scholarship sponsor" loading="lazy">
+        <img src="assets/img/sch_17.jpg" alt="UBC scholarship sponsor" loading="lazy">
+        <img src="assets/img/sch_19.png" alt="UBC scholarship sponsor" loading="lazy">
+        <img src="assets/img/sch_20.png" alt="UBC scholarship sponsor" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CLOSING CTA ═══════════════════════════════════════════ -->
+<section class="close" data-shot="07-close">
+  <img src="assets/img/ensemble.jpg" alt="" aria-hidden="true" loading="lazy">
+  <div class="inner rv">
+    <p class="eyebrow">Registration</p>
+    <h2>Rise. Shine.</h2>
+    <p>Registration for the 2026&ndash;2027 season is open. Choose your city, check the repertoire, and enter.</p>
+    <div class="btns">
+      <a class="btn btn--silver" href="https://reg.universalballetcompetition.com/">Register now <span class="arr">&rarr;</span></a>
+      <a class="btn btn--ghost" href="https://universalballetcompetition.com/contact/">Contact UBC</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══ FOOTER ════════════════════════════════════════════════ -->
