@@ -318,6 +318,9 @@ section{ position:relative; }
 .ev:hover{ background:rgba(255,255,255,.045); padding-inline:16px; }
 .ev__n{ font-family:var(--display); font-size:13px; color:var(--mist-dim); letter-spacing:.08em; }
 .ev__city{ font-family:var(--display); font-size:clamp(18px,1.35vw,25px); line-height:1.2; letter-spacing:-.008em; }
+.ev__state{ display:block; font-family:var(--ui); font-size:11px; letter-spacing:.18em;
+  text-transform:uppercase; color:#7fe0a8; margin-top:5px; }
+.ev__state:empty{ display:none; }
 .ev__city .st{ font-family:var(--ui); font-size:.56em; letter-spacing:.2em; color:var(--mist-dim); margin-left:.7em; text-transform:uppercase; }
 .ev__date{ font-size:13px; letter-spacing:.13em; text-transform:uppercase; color:var(--mist); }
 .ev__tag{ font-size:10px; letter-spacing:.2em; text-transform:uppercase; }
@@ -481,8 +484,13 @@ footer{ background:var(--navy-deep); border-top:1px solid var(--navy-line); }
 .ribbon-divider{ position:relative; margin-block:clamp(-26px,-2vw,-10px) 0; }
 
 /* ── reveal ──────────────────────────────────────────────────── */
-.rv{ opacity:0; transform:translateY(26px); transition:opacity 1s var(--ease), transform 1s var(--ease); }
-.rv.in{ opacity:1; transform:none; }
+/* Visible by default. Only a page that has reached JS gets .js on <html>,
+   and only then do the reveals start hidden — so a JS failure, a slow
+   connection or a blocked script degrades to "no animation", never to a
+   blank page. */
+.rv{ opacity:1; transform:none; }
+html.js .rv{ opacity:0; transform:translateY(26px); transition:opacity 1s var(--ease), transform 1s var(--ease); }
+html.js .rv.in{ opacity:1; transform:none; }
 
 /* ── responsive ──────────────────────────────────────────────── */
 @media (max-width:1080px){
@@ -541,7 +549,7 @@ footer{ background:var(--navy-deep); border-top:1px solid var(--navy-line); }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{ animation-duration:.001ms!important; animation-iteration-count:1!important; transition-duration:.001ms!important; }
   html{ scroll-behavior:auto; }
-  .rv{ opacity:1; transform:none; }
+  .rv, html.js .rv{ opacity:1; transform:none; }
   .hero__media img{ transform:none; }
   .stars i{ opacity:.7; }
   .ribbon polygon{ opacity:.8; }

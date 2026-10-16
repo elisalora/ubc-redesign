@@ -1,0 +1,26 @@
+{
+  "_source": "Each row is read from that city's own UBC event page, https://universalballetcompetition.com/semifinal/<slug>/, captured 2026-10-16. The /semi-finals/ listing page disagrees with the city pages on three dates (San Francisco, Dayton, Palm Beach Gardens) and on the April Chicago; the city page wins, because that is the page a registrant actually lands on.",
+  "_fields": "reg = registration state, one of open|wait|sold. Event state (upcoming / live / completed) is NOT stored — it is computed from start/end at render time so it cannot go stale.",
+  "semifinals": [
+    { "city": "San Francisco, CA",      "slug": "san-francisco",      "start": "2026-10-16", "end": "2026-10-17", "label": "October 16–17, 2026",   "reg": "wait" },
+    { "city": "Dayton, OH",             "slug": "dayton",             "start": "2026-10-23", "end": "2026-10-24", "label": "October 23–24, 2026",   "reg": "wait" },
+    { "city": "Denver, CO",             "slug": "denver",             "start": "2027-01-15", "end": "2027-01-17", "label": "January 15–17, 2027",   "reg": "wait" },
+    { "city": "Manchester, NH",         "slug": "manchester",         "start": "2027-01-29", "end": "2027-01-31", "label": "January 29–31, 2027",   "reg": "wait" },
+    { "city": "Bartlett, TN",           "slug": "bartlett",           "start": "2027-01-29", "end": "2027-01-31", "label": "January 29–31, 2027",   "reg": "wait" },
+    { "city": "Palm Beach Gardens, FL", "slug": "palm-beach-gardens", "start": "2027-02-11", "end": "2027-02-14", "label": "February 11–14, 2027",  "reg": "wait" },
+    { "city": "Austin, TX",             "slug": "austin-tx",          "start": "2027-02-12", "end": "2027-02-14", "label": "February 12–14, 2027",  "reg": "open" },
+    { "city": "Pittsburgh, PA",         "slug": "pittsburgh",         "start": "2027-02-19", "end": "2027-02-21", "label": "February 19–21, 2027",  "reg": "wait" },
+    { "city": "Chicago, IL",            "slug": "chicago",            "start": "2027-02-19", "end": "2027-02-21", "label": "February 19–21, 2027",  "reg": "sold" },
+    { "city": "Iowa City, IA",          "slug": "iowa-city",          "start": "2027-03-19", "end": "2027-03-21", "label": "March 19–21, 2027",     "reg": "open" },
+    { "city": "Irvine, CA",             "slug": "irvine",             "start": "2027-03-25", "end": "2027-03-27", "label": "March 25–27, 2027",     "reg": "wait" },
+    { "city": "Atlanta, GA",            "slug": "atlanta",            "start": "2027-04-02", "end": "2027-04-04", "label": "April 2–4, 2027",       "reg": "wait" },
+    { "city": "Jacksonville, FL",       "slug": "jacksonville-fl",    "start": "2027-04-02", "end": "2027-04-04", "label": "April 2–4, 2027",       "reg": "wait" },
+    { "city": "Chicago, IL",            "slug": "chicago-il",         "start": "2027-04-15", "end": "2027-04-18", "label": "April 15–18, 2027",     "reg": "wait" },
+    { "city": "Houston, TX",            "slug": "houston",            "start": "2027-04-23", "end": "2027-04-25", "label": "April 23–25, 2027",     "reg": "wait" },
+    { "city": "Raleigh, NC",            "slug": "raleigh-nc",         "start": "2027-04-30", "end": "2027-05-02", "label": "April 30 – May 2, 2027", "reg": "open" }
+  ],
+  "finals": [
+    { "city": "Asia Pacific Grand Prix", "where": "", "href": "https://universalballetcompetition.com/asia-pacific-grand-prix-finals/", "start": "2026-10-03", "end": "2026-10-06", "label": "October 3–6, 2026", "reg": "open" },
+    { "city": "Grand Prix Finals", "where": "Iowa City, IA", "href": "https://universalballetcompetition.com/grand-prix/", "start": "2027-05-26", "end": "2027-05-30", "label": "May 26–30, 2027", "reg": "open" }
+  ]
+}

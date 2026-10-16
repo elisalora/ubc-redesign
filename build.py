@@ -8,11 +8,55 @@ so it lives in partials/ and is written in exactly once, here.
     python3 build.py           # build
     python3 build.py --check   # fail if any built page is stale (for CI/pre-deploy)
 """
+import json
 import re
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).parent
+SEASON = json.loads((ROOT / "data/season.json").read_text())
+
+
+def season_rows():
+    """Render the season table from data/season.json.
+
+    One file holds every city, date and registration state, so the table and
+    the "next competition" band cannot drift apart, and nobody has to hand-edit
+    sixteen blocks of markup to change one status.
+
+    Registration state is DATA (it only changes when UBC changes it).
+    Event state — upcoming / happening now / completed — is NOT stored; the
+    page computes it from start/end at load, so it can never go stale.
+    """
+    out = []
+    for i, r in enumerate(SEASON["semifinals"], 1):
+        href = f'https://universalballetcompetition.com/semifinal/{r["slug"]}/'
+        out.append(
+            f'      <a class="ev" href="{href}"\n'
+            f'         data-start="{r["start"]}" data-end="{r["end"]}" data-reg="{r["reg"]}">\n'
+            f'        <span class="ev__n">{i:02d}</span>'
+            f'<span class="ev__city">{r["city"]}<span class="ev__state"></span></span>\n'
+            f'        <span class="ev__date">{r["label"]}</span>'
+            f'<span class="ev__tag"></span>'
+            f'<span class="ev__go">Details &rarr;</span></a>\n'
+        )
+    return "\n".join(out)
+
+
+def finals_rows():
+    out = []
+    for r in SEASON["finals"]:
+        where = f' <span class="st">{r["where"]}</span>' if r["where"] else ""
+        out.append(
+            f'    <a class="ev ev--finals rv" href="{r["href"]}"\n'
+            f'       data-start="{r["start"]}" data-end="{r["end"]}" data-reg="{r["reg"]}">\n'
+            f'      <span class="ev__n">&#9733;</span>'
+            f'<span class="ev__city">{r["city"]}{where}<span class="ev__state"></span></span>\n'
+            f'      <span class="ev__date">{r["label"]}</span>'
+            f'<span class="ev__tag"></span>'
+            f'<span class="ev__go">Details &rarr;</span></a>\n'
+        )
+    return "\n".join(out)
 HEAD = (ROOT / "partials/head.html").read_text()
 TOP = (ROOT / "partials/chrome-top.html").read_text()
 BOTTOM = (ROOT / "partials/chrome-bottom.html").read_text()
@@ -67,6 +111,8 @@ def build(check=False):
     stale, written = [], []
     for key, (out, body_file, title, desc, nav) in PAGES.items():
         body = (ROOT / body_file).read_text().rstrip() + "\n"
+        body = body.replace("<!--SEASON_ROWS-->", season_rows())
+        body = body.replace("<!--FINALS_ROWS-->", finals_rows())
         html = compose(title, desc, body, nav)
         target = ROOT / out
         current = target.read_text() if target.exists() else None

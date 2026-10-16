@@ -12,6 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/ubc.css">
+<script>document.documentElement.className += " js";</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -469,11 +470,16 @@
     if (e.target.closest('a') && menu.classList.contains('open')) burger.click();
   });
 
-  /* ── schedule state ──────────────────────────────────────────
-     Past / happening-now / upcoming are computed from the row's own
-     dates. The "next competition" band is read off the same rows, so
-     the two can never disagree and neither can go stale.            */
-  var LABEL = { open:'Open', wait:'Waitlist', sold:'Sold out', live:'Happening now', done:'Completed' };
+  /* ── schedule state ────────────────────────────────────────
+     Two independent things, which an earlier version wrongly merged
+     into one chip:
+       REGISTRATION state  — open / waitlist / sold out. Data; comes
+                             from each city's own UBC event page.
+       EVENT state         — upcoming / happening now / completed.
+                             Computed here from the row's own dates.
+     A city can be ON STAGE and on a WAITLIST at the same time, which
+     is exactly what San Francisco is, so they get separate slots.   */
+  var REG   = { open:'Open', wait:'Waitlist', sold:'Sold out' };
   var today = new Date(); today.setHours(0,0,0,0);
   var rows  = [].slice.call(document.querySelectorAll('.ev[data-start]'));
   var next  = null, live = null;
@@ -481,28 +487,43 @@
   rows.forEach(function(row){
     var start = new Date(row.dataset.start + 'T00:00:00');
     var end   = new Date(row.dataset.end   + 'T00:00:00');
-    var state = row.dataset.status || 'open';
+    var reg   = row.dataset.reg || 'open';
+    var ev;
 
-    if (end < today)        { state = 'done'; row.classList.add('is-past'); }
-    else if (start <= today){ state = 'live'; row.classList.add('is-live'); live = live || row; }
-    else if (!next)         { next = row; }
+    if (end < today)         { ev = 'done'; row.classList.add('is-past'); }
+    else if (start <= today) { ev = 'live'; row.classList.add('is-live'); live = live || row; }
+    else                     { ev = 'next'; if (!next) next = row; }
 
+    // registration chip — always the registration state, never the event
     var tag = row.querySelector('.ev__tag');
-    tag.innerHTML = '<span class="tag ' + state + '">' + LABEL[state] + '</span>';
-    row.dataset.state = state;
+    if (tag) {
+      tag.innerHTML = ev === 'done'
+        ? '<span class="tag done">Completed</span>'
+        : '<span class="tag ' + reg + '">' + REG[reg] + '</span>';
+    }
+    // event state sits beside the city, where it belongs
+    var st = row.querySelector('.ev__state');
+    if (st && ev === 'live') st.innerHTML = '<span class="pulse"></span>On stage now';
+
+    row.dataset.ev = ev;
+    row.dataset.regState = reg;
   });
 
   var show = live || next;
   if (show) {
     var band = document.getElementById('nextup');
-    document.getElementById('nu-label').textContent = live ? 'On stage now' : 'Next competition';
-    document.getElementById('nu-city').textContent  = show.querySelector('.ev__city').textContent.trim();
-    document.getElementById('nu-date').textContent  = show.querySelector('.ev__date').textContent.trim();
+    if (band) {
+      var isLive = show === live;
+      document.getElementById('nu-label').textContent = isLive ? 'On stage now' : 'Next competition';
+      document.getElementById('nu-city').textContent  =
+        show.querySelector('.ev__city').childNodes[0].textContent.trim();
+      document.getElementById('nu-date').textContent  = show.querySelector('.ev__date').textContent.trim();
 
-    var st = document.getElementById('nu-status');
-    st.className = 'status ' + (live ? 'live' : 'open');
-    st.innerHTML = (live ? '<span class="pulse"></span>' : '') + LABEL[show.dataset.state];
-    band.hidden = false;
+      var st2 = document.getElementById('nu-status');
+      st2.className = 'status ' + show.dataset.regState;
+      st2.textContent = REG[show.dataset.regState];
+      band.hidden = false;
+    }
   }
 
   /* judges filter — plain substring match over the rendered names */
