@@ -6,6 +6,54 @@ Open it directly in a browser, or `python3 -m http.server` from this folder.
 Not affiliated with Universal Ballet Competition. This is a design study built from
 their public site for review.
 
+## Challenge for Buzz: replace the placeholders before UBC sees this
+
+The site has to hold up when someone from UBC reads it closely. Three parts of the landing page still show placeholder or wrong copy. Fix all three, using only facts UBC publishes. **No invented numbers, names, or links.** If something can't be sourced, change the design so the gap doesn't show. Never guess.
+
+Work on a branch, open a PR against `main`, and pull first, since other bots work in this repo too. Keep the "independent design study, not affiliated with UBC" disclaimer exactly as it is.
+
+### 1. Stats band (`pages/index.body.html`, `.stat` blocks)
+It shows `16` / "Cities, 2026–27 season", but `TBC` for **Dancers hosted & mentored** and **Awarded in scholarships**.
+- Find real figures in UBC's own material: the About page, their podcast, press coverage, or interviews. Record each figure's source URL (and date or quote) in `data/` or in a code comment beside the number.
+- If you can't find a sourced figure, replace that stat with a fact you can verify, such as the Grand Prix Finals city and dates, the number of semi-final cities, or the founding year if UBC states it. Don't leave `TBC` showing and don't round a vague claim ("millions of dollars") into a number.
+- The `16` should come from `data/season.json` (the count of `semifinals`) rather than being typed in by hand.
+
+### 2. Sponsors (`pages/index.body.html`, `.sponsors` section)
+There are 3 title-sponsor logos and 17 scholarship-sponsor logos, all with the same generic alt text ("UBC title sponsor" / "UBC scholarship sponsor").
+- Identify every logo by name from [UBC's Scholarships & Sponsors page](https://universalballetcompetition.com/sponsors/). Use what's written in or next to the logo, never a guess from the file name.
+- Give each one an alt text of just the sponsor's name (for example `alt="Victoria Ballet"`, not "logo of…"), and link it to the sponsor's site **only if UBC's page links it**.
+- Consider moving the sponsors into a data file (`data/sponsors.json`, holding name, image, url, tier, and source) that `build.py` renders, the same way `season.json` drives the schedule.
+- Headings: the tier labels "Title Sponsors" and "Scholarship Sponsors" are plain `<p class="tier__label">` text. Make them real headings (`<h3>`) under the section's `<h2>` so screen readers and the outline get a proper structure, and make sure no heading is left empty.
+- Note: `assets/img/ensemble.jpg` uses `alt="" aria-hidden="true"` on purpose because it's decorative. That's correct, so leave it alone.
+
+### 3. Closing band (`pages/index.body.html`, "Registration for the 2026–2027 season is open")
+Right now 12 of the 16 cities in `data/season.json` are `wait` (waitlist), 3 are `open`, and 1 is `sold`, so "registration is open" overstates it.
+- Generate this sentence in `build.py` from `season.json` so it can't go stale. Example: "Registration is open in 3 cities; 12 are waitlist-only." Name the open cities if it reads well.
+- Handle the edge cases: all cities open, none open (for example "All cities are on waitlist; join a waitlist…"), and events that are already finished.
+
+### Acceptance criteria
+- [ ] No `TBC` anywhere in any built page (`grep -ri tbc *.html` returns nothing).
+- [ ] Every number on the page has a source recorded in the repo (a data-file field or a comment with the URL).
+- [ ] All 20 sponsor logos have a correct, distinct name as alt text. Links exist only where UBC links them. Tier labels are `<h3>`s with text.
+- [ ] The closing-band wording is generated from `data/season.json` and matches the open/wait/sold counts.
+- [ ] Edits go in `pages/`, `partials/`, `data/`, or `build.py`. Never hand-edit the built `index.html`, `rules.html`, or `judges.html`.
+- [ ] `python3 build.py` runs, and `python3 build.py --check` passes.
+- [ ] `node tools/check_pages.js` passes against a local server (`python3 -m http.server 8777`).
+- [ ] The disclaimer is unchanged. The PR description lists each sourced fact with its URL, plus anything you couldn't source and how you handled it.
+
+## Repo overview
+
+| Path | What it is |
+|---|---|
+| `build.py` | Builds `index.html`, `rules.html`, and `judges.html` from `pages/*.body.html` plus the shared `partials/`, and renders the season table from `data/season.json`. `--check` fails if any built page is out of date. |
+| `data/season.json` | The single source for the 16 semi-finals: city, slug, dates, label, and `reg` (`open`/`wait`/`sold`), read from each city's own UBC event page. Event state (upcoming, live, or done) is not stored. It's computed from the dates when the page loads. |
+| `pages/` | The body of each page. **Edit here**, not in the built HTML. |
+| `partials/` | Shared `head.html`, `chrome-top.html` (nav), and `chrome-bottom.html` (footer, scripts), written in exactly once. |
+| `tools/check_pages.js` | Loads every built page in headless Chrome (Puppeteer) and checks for failed requests and the computed styles that screenshots miss. Usage: `node tools/check_pages.js [baseURL]`. The Chrome path is hard-coded for macOS, so adjust `CHROME` on other machines. |
+| `assets/` | Images, the starfield SVGs, and styles. |
+
+Deployed on Vercel as `ubc-redesign` at https://ubc-redesign.vercel.app.
+
 ## The direction
 
 **Live inside their navy instead of floating on white.** Every competition photograph
