@@ -1,0 +1,207 @@
+{
+  "_about": "Sponsors shown on index.html, rendered by build.py. Order and membership follow UBC's own Scholarships & Sponsors page. 'url' is present only when UBC's page links the logo. 'name' is used as the alt text. Images are trimmed copies of the logos UBC serves on that page.",
+  "source_page": "https://universalballetcompetition.com/sponsors/",
+  "checked": "2026-10-17",
+  "sponsors": [
+    {
+      "name": "Nikolay",
+      "tier": "title",
+      "image": "assets/img/sponsors/nikolay.png",
+      "url": "https://nikolay-world.com/",
+      "source": "UBC Scholarships & Sponsors page (checked 2026-10-17): logo links to https://nikolay-world.com/"
+    },
+    {
+      "name": "Só Dança",
+      "tier": "title",
+      "image": "assets/img/sponsors/so-danca.png",
+      "url": "https://www.sodanca.com/",
+      "source": "UBC Scholarships & Sponsors page (checked 2026-10-17): logo links to https://www.sodanca.com/"
+    },
+    {
+      "name": "Vita Barre",
+      "tier": "title",
+      "image": "assets/img/sponsors/vita-barre.png",
+      "url": "https://vitabarre.com/",
+      "source": "UBC Scholarships & Sponsors page (checked 2026-10-17): logo links to https://vitabarre.com/"
+    },
+    {
+      "name": "Joffrey Ballet School",
+      "tier": "scholarship",
+      "image": "assets/img/sponsors/joffrey-ballet-school.png",
+      "url": "https://www.joffreyballetschool.com/",
+      "source": "UBC Scholarships & Sponsors page (checked 2026-10-17): logo links to https://www.joffreyballetschool.com/"
+    },
+    {
+      "name": "Complexions Contemporary Ballet",
+      "tier": "scholarship",
+      "image": "assets/img/sponsors/complexions.png",
+      "url": "https://www.complexionscontemporaryballet.org/",
+      "source": "UBC Scholarships & Sponsors page (checked 2026-10-17): logo links to https://www.complexionscontemporaryballet.org/"
+    },
+    {
+      "name": "Dance Theatre of Harlem",
+      "tier": "scholarship",
+      "image": "assets/img/sponsors/dance-theatre-of-harlem.png",
+      "url": "https://www.dancetheatreofharlem.org/",
+      "source": "UBC Scholarships & Sponsors page (checked 2026-10-17): logo links to https://www.dancetheatreofharlem.org/"
+    },
+    {
+      "name": "American Ballet Theatre",
+      "tier": "scholarship",
+      "image": "assets/img/sponsors/american-ballet-theatre.png",
+      "url": "https://www.abt.org/",
+      "source": "UBC Scholarships & Sponsors page (checked 2026-10-17): logo links to https://www.abt.org/"
+    },
+    {
+      "name": "Texas Ballet Theater",
+      "tier": "scholarship",
+      "image": "assets/img/sponsors/texas-ballet-theater.png",
+      "url": "https://texasballettheater.org/",
+      "source": "UBC Scholarships & Sponsors page (checked 2026-10-17): logo links to https://texasballettheater.org/"
+    },
+    {
+      "name": "Colorado Ballet",
+      "tier": "scholarship",
+      "image": "assets/img/sponsors/colorado-ballet.png",
+      "url": "https://coloradoballet.org/",
+      "source": "UBC Scholarships & Sponsors page (checked 2026-10-17): logo links to https://coloradoballet.org/"
+    },
+    {
+      "name": "Pacific Northwest Ballet",
+      "tier": "scholarship",
+      "image": "assets/img/sponsors/pacific-northwest-ballet.png",
+      "url": "https://www.pnb.org/",
+      "source": "UBC Scholarships & Sponsors page (checked 2026-10-17): logo links to https://www.pnb.org/"
+    },
+    {
+      "name": "Royal Winnipeg Ballet School",
+      "tier": "scholarship",
+      "image": "assets/img/sponsors/royal-winnipeg-ballet-school.png",
+      "url": "https://www.rwb.org/",
+      "source": "UBC Scholarships & Sponsors page (checked 2026-10-17): logo links to https://www.rwb.org/"
+    },
+    {
+      "name": "Orlando Ballet",
+      "tier": "scholarship",
+      "image": "assets/img/sponsors/orlando-ballet.png",
+      "url": "https://orlandoballet.org/",
+      "source": "UBC Scholarships & Sponsors page (checked 2026-10-17): logo links to https://orlandoballet.org/"
+    },
+    {
+      "name": "University of North Carolina School of the Arts",
+      "tier": "scholarship",
+      "image": "assets/img/sponsors/uncsa.png",
+      "source": "UBC Scholarships & Sponsors page (checked 2026-10-17): the UNCSA logo is shown in the scholarship list, but UBC links it to orlandoballet.org (apparently a mislink), so it is left unlinked here; also in UBC's footer carousel"
+    },
+    {
+      "name": "Alonzo King LINES Ballet",
+      "tier": "scholarship",
+      "image": "assets/img/sponsors/alonzo-king-lines-ballet.png",
+      "url": "https://linesballet.org/",
+      "source": "UBC Scholarships & Sponsors page (checked 2026-10-17): logo links to https://linesballet.org/"
+    },
+    {
+      "name": "Kansas City Ballet",
+      "tier": "scholarship",
+      "image": "assets/img/sponsors/kansas-city-ballet.png",
+      "url": "https://kcballet.org/",
+      "source": "UBC Scholarships & Sponsors page (checked 2026-10-17): logo links to https://kcballet.org/"
+    },
+    {
+      "name": "Cincinnati Ballet",
+      "tier": "scholarship",
+      "image": "assets/img/sponsors/cincinnati-ballet.png",
+      "url": "https://cballet.org/",
+      "source": "UBC Scholarships & Sponsors page (checked 2026-10-17): logo links to https://cballet.org/"
+    },
+    {
+      "name": "Scholarship sponsor (GA/PD monogram)",
+      "tier": "scholarship",
+      "image": "assets/img/sponsors/unidentified-ga-pd.png",
+      "source": "UBC Scholarships & Sponsors page (checked 2026-10-17): unlinked 'GA/PD' monogram (UBC file UBC-Sch-Sponsors_9.jpg). NOT IDENTIFIED. Do not guess; replace name/alt once UBC confirms who it is",
+      "unidentified": true
+    },
+    {
+      "name": "Philadelphia Ballet",
+      "tier": "scholarship",
+      "image": "assets/img/sponsors/philadelphia-ballet.png",
+      "url": "https://philadelphiaballet.org/",
+      "source": "UBC Scholarships & Sponsors page (checked 2026-10-17): logo links to https://philadelphiaballet.org/; UBC shows both the old 'PA Ballet' mark and the current Philadelphia Ballet mark, both linked there. Only the current mark is used"
+    },
+    {
+      "name": "Ballet West Academy",
+      "tier": "scholarship",
+      "image": "assets/img/sponsors/ballet-west-academy.png",
+      "url": "https://www.academy.balletwest.org/",
+      "source": "UBC Scholarships & Sponsors page (checked 2026-10-17): logo links to https://www.academy.balletwest.org/"
+    },
+    {
+      "name": "Ballet Hispánico",
+      "tier": "scholarship",
+      "image": "assets/img/sponsors/ballet-hispanico.png",
+      "url": "https://www.ballethispanico.org/",
+      "source": "UBC Scholarships & Sponsors page (checked 2026-10-17): logo links to https://www.ballethispanico.org/"
+    },
+    {
+      "name": "Duncan Cooper Summer Workshop",
+      "tier": "scholarship",
+      "image": "assets/img/sponsors/duncan-cooper.png",
+      "url": "https://www.duncancooper.com/",
+      "source": "UBC Scholarships & Sponsors page (checked 2026-10-17): logo links to https://www.duncancooper.com/"
+    },
+    {
+      "name": "Tulsa Ballet",
+      "tier": "scholarship",
+      "image": "assets/img/sponsors/tulsa-ballet.png",
+      "url": "https://tulsaballet.org/",
+      "source": "UBC Scholarships & Sponsors page (checked 2026-10-17): logo links to https://tulsaballet.org/"
+    },
+    {
+      "name": "Point Park University Dance",
+      "tier": "scholarship",
+      "image": "assets/img/sponsors/point-park-university.png",
+      "url": "https://www.pointpark.edu/",
+      "source": "UBC Scholarships & Sponsors page (checked 2026-10-17): logo links to https://www.pointpark.edu/"
+    },
+    {
+      "name": "San Francisco Ballet School",
+      "tier": "scholarship",
+      "image": "assets/img/sponsors/san-francisco-ballet.png",
+      "url": "https://www.sfballet.org/",
+      "source": "UBC Scholarships & Sponsors page (checked 2026-10-17): logo links to https://www.sfballet.org/"
+    },
+    {
+      "name": "Next Generation Ballet at the Straz Center",
+      "tier": "scholarship",
+      "image": "assets/img/sponsors/next-generation-ballet.png",
+      "url": "https://www.strazcenter.org/patel-conservatory/dance/next-generation-ballet/",
+      "source": "UBC Scholarships & Sponsors page (checked 2026-10-17): logo links to https://www.strazcenter.org/patel-conservatory/dance/next-generation-ballet/"
+    },
+    {
+      "name": "New World School of the Arts",
+      "tier": "scholarship",
+      "image": "assets/img/sponsors/new-world-school-of-the-arts.png",
+      "url": "https://nwsa.mdc.edu/",
+      "source": "UBC Scholarships & Sponsors page (checked 2026-10-17): logo links to https://nwsa.mdc.edu/"
+    },
+    {
+      "name": "The Rock School for Dance Education",
+      "tier": "scholarship",
+      "image": "assets/img/sponsors/the-rock-school.png",
+      "url": "https://www.therockschool.org/",
+      "source": "UBC Scholarships & Sponsors page (checked 2026-10-17): logo links to https://www.therockschool.org/"
+    },
+    {
+      "name": "Pittsburgh Ballet Theatre School",
+      "tier": "scholarship",
+      "image": "assets/img/sponsors/pittsburgh-ballet-theatre-school.png",
+      "source": "UBC Scholarships & Sponsors page (checked 2026-10-17): logo is unlinked; identified from the name printed in the logo"
+    },
+    {
+      "name": "Scouting Dance",
+      "tier": "scholarship",
+      "image": "assets/img/sponsors/scouting-dance.png",
+      "source": "UBC Scholarships & Sponsors page (checked 2026-10-17): logo is unlinked; identified from the name printed in the logo"
+    }
+  ]
+}

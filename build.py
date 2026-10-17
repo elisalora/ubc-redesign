@@ -9,12 +9,16 @@ so it lives in partials/ and is written in exactly once, here.
     python3 build.py --check   # fail if any built page is stale (for CI/pre-deploy)
 """
 import json
+import math
 import re
+import struct
 import sys
+from html import escape
 from pathlib import Path
 
 ROOT = Path(__file__).parent
 SEASON = json.loads((ROOT / "data/season.json").read_text())
+SPONSORS = json.loads((ROOT / "data/sponsors.json").read_text())
 
 
 def season_rows():
@@ -57,6 +61,47 @@ def finals_rows():
             f'<span class="ev__go">Details &rarr;</span></a>\n'
         )
     return "\n".join(out)
+
+
+def png_size(path):
+    """Width and height straight from the PNG header (no Pillow needed)."""
+    with open(path, "rb") as f:
+        head = f.read(24)
+    assert head[:8] == b"\x89PNG\r\n\x1a\n", f"{path} is not a PNG"
+    return struct.unpack(">II", head[16:24])
+
+
+def sponsor_logos(tier, area=0.78, cell_ratio=2.0):
+    """Render one sponsor tier from data/sponsors.json.
+
+    Logos arrive in every shape, from square crests to 11:1 wordmarks. Sizing
+    them all to the same height makes the wordmarks shout and the crests vanish,
+    which is what made the old grid look ragged. Instead each logo gets the same
+    optical AREA inside a fixed-ratio cell, clamped to the cell's edges. The
+    result is written as a percentage width, so it holds at every breakpoint.
+
+    A logo is wrapped in a link only when UBC's own page links it ("url").
+    The alt text is the sponsor's name and nothing else.
+    """
+    out = []
+    for s in SPONSORS["sponsors"]:
+        if s["tier"] != tier:
+            continue
+        w, h = png_size(ROOT / s["image"])
+        ar = w / h
+        # cell is cell_ratio wide x 1 tall; target area = area * cell_ratio
+        lw = min(math.sqrt(area * cell_ratio * ar), cell_ratio, ar)  # clamp width, then height (h = lw/ar <= 1)
+        pct = round(lw / cell_ratio * 100, 1)
+        img = (f'<img src="{s["image"]}" alt="{escape(s["name"])}" width="{w}" height="{h}" '
+               f'style="--w:{pct}%" loading="lazy" decoding="async">')
+        if s.get("url"):
+            out.append(f'        <li class="spon"><a href="{escape(s["url"])}" target="_blank" rel="noopener">{img}</a></li>')
+        else:
+            out.append(f'        <li class="spon">{img}</li>')
+    assert out, f"no sponsors in tier {tier!r}"
+    return "\n".join(out)
+
+
 HEAD = (ROOT / "partials/head.html").read_text()
 TOP = (ROOT / "partials/chrome-top.html").read_text()
 BOTTOM = (ROOT / "partials/chrome-bottom.html").read_text()
@@ -113,6 +158,8 @@ def build(check=False):
         body = (ROOT / body_file).read_text().rstrip() + "\n"
         body = body.replace("<!--SEASON_ROWS-->", season_rows())
         body = body.replace("<!--FINALS_ROWS-->", finals_rows())
+        body = body.replace("<!--TITLE_SPONSORS-->", sponsor_logos("title", area=0.62, cell_ratio=2.6))
+        body = body.replace("<!--SCHOLARSHIP_SPONSORS-->", sponsor_logos("scholarship"))
         html = compose(title, desc, body, nav)
         target = ROOT / out
         current = target.read_text() if target.exists() else None
