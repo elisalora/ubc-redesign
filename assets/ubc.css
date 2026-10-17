@@ -367,17 +367,32 @@ section{ position:relative; }
 .sponsors h2{ color:var(--ink); }
 .sponsors .rule{ background:#b99a4e; }
 .tier{ margin-top:clamp(34px,4vw,54px); }
-.tier__label{ font-size:10px; letter-spacing:.32em; text-transform:uppercase; color:rgba(21,24,29,.5); margin-bottom:22px; display:flex; align-items:center; gap:16px; }
+.tier__label{ font-family:inherit; font-weight:400; font-size:10px; line-height:1.4; letter-spacing:.32em; text-transform:uppercase; color:rgba(21,24,29,.62); margin:0 0 22px; display:flex; align-items:center; gap:16px; }
 .tier__label::after{ content:""; flex:1; height:1px; background:rgba(21,24,29,.14); }
-.title-row{ display:flex; flex-wrap:wrap; align-items:center; gap:clamp(28px,5vw,70px); }
-.title-row img{ height:clamp(58px,6vw,86px); width:auto; object-fit:contain; mix-blend-mode:multiply; }
-.sch-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(104px,1fr)); gap:clamp(14px,2vw,30px); align-items:center; }
-.sch-grid img{
-  width:100%; height:auto; aspect-ratio:1; object-fit:contain;
-  filter:grayscale(1) contrast(.92); opacity:.58; mix-blend-mode:multiply;
-  transition:filter .45s var(--ease), opacity .45s var(--ease), transform .45s var(--ease);
+
+/* Sponsor logos, in their own colours: a greyscale wash turned light marks
+   (Scouting Dance's lime, NWSA's teal) nearly invisible. Every cell has the
+   same aspect ratio; build.py gives each logo a width (--w) that equalises its optical area, so square crests and
+   long wordmarks read at the same weight. Rows are centred so a short last
+   row sits in the middle instead of hanging off the left. */
+.logos{ list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; justify-content:center; --gap:clamp(10px,1.6vw,22px); gap:var(--gap); }
+.spon{ flex:0 0 calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols)); display:flex; }
+.spon > a{ flex:1; display:flex; border-radius:6px; outline-offset:4px; }
+.logos img{
+  display:block; margin:auto; width:var(--w,60%); max-width:100%; height:auto; max-height:100%;
+  mix-blend-mode:multiply;
 }
-.sch-grid img:hover{ filter:none; opacity:1; transform:scale(1.05); }
+.logos--title{ --cols:3; }
+.logos--title .spon{ aspect-ratio:2.6; padding:0 2%; }
+.logos--sch{ --cols:9; }
+.logos--sch .spon{ aspect-ratio:2; }
+.logos--sch img{ transition:transform .45s var(--ease); }
+.logos--sch a:hover img, .logos--sch a:focus-visible img{ transform:scale(1.06); }
+.logos a:focus-visible{ outline:2px solid var(--slate); }
+@media (max-width:1100px){ .logos--sch{ --cols:6; } }
+@media (max-width:720px){ .logos--sch{ --cols:4; } .logos--title{ --cols:2; } }
+@media (max-width:460px){ .logos--sch{ --cols:3; } }
+@media (prefers-reduced-motion:reduce){ .logos--sch img{ transition:none; } .logos--sch a:hover img, .logos--sch a:focus-visible img{ transform:none; } }
 
 /* CLOSING CTA */
 .close{ position:relative; isolation:isolate; min-height:clamp(420px,56vw,640px); display:grid; place-items:center; text-align:center; overflow:hidden; }
@@ -509,10 +524,12 @@ html.js .rv.in{ opacity:1; transform:none; }
     background:var(--navy-deep); border-left:1px solid var(--navy-line);
     flex-direction:column; align-items:stretch; gap:0; margin:0;
     padding:104px 30px 40px; overflow-y:auto;
-    transform:translateX(100%); transition:transform .5s var(--ease);
-    box-shadow:-30px 0 70px rgba(0,8,22,.5);
+    transform:translateX(100%); transition:transform .5s var(--ease), box-shadow .5s var(--ease);
+    /* shadow only while open: on the closed, off-screen drawer it bled a dark
+       band down the right edge of every page on phones */
+    box-shadow:none;
   }
-  .nav .menu.open{ transform:none; }
+  .nav .menu.open{ transform:none; box-shadow:-30px 0 70px rgba(0,8,22,.5); }
   .menu > li > a{ padding:15px 0; border-bottom:1px solid rgba(255,255,255,.08); font-size:14px; }
   .menu > li > a::after{ display:none; }
   .caret{ display:none; }
