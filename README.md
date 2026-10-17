@@ -8,7 +8,7 @@ their public site for review.
 
 ## Challenge for Buzz: replace the placeholders before UBC sees this
 
-The site has to hold up when someone from UBC reads it closely. Three parts of the landing page still show placeholder or wrong copy. Fix all three, using only facts UBC publishes. **No invented numbers, names, or links.** If something can't be sourced, change the design so the gap doesn't show. Never guess.
+The site has to hold up when someone from UBC reads it closely. Three parts of the landing page showed placeholder or wrong copy. The sponsors part is done (PR #2); fix the other two, using only facts UBC publishes. **No invented numbers, names, or links.** If something can't be sourced, change the design so the gap doesn't show. Never guess.
 
 Work on a branch, open a PR against `main`, and pull first, since other bots work in this repo too. Keep the "independent design study, not affiliated with UBC" disclaimer exactly as it is.
 
@@ -18,13 +18,10 @@ It shows `16` / "Cities, 2026–27 season", but `TBC` for **Dancers hosted & men
 - If you can't find a sourced figure, replace that stat with a fact you can verify, such as the Grand Prix Finals city and dates, the number of semi-final cities, or the founding year if UBC states it. Don't leave `TBC` showing and don't round a vague claim ("millions of dollars") into a number.
 - The `16` should come from `data/season.json` (the count of `semifinals`) rather than being typed in by hand.
 
-### 2. Sponsors (`pages/index.body.html`, `.sponsors` section)
-There are 3 title-sponsor logos and 17 scholarship-sponsor logos, all with the same generic alt text ("UBC title sponsor" / "UBC scholarship sponsor").
-- Identify every logo by name from [UBC's Scholarships & Sponsors page](https://universalballetcompetition.com/sponsors/). Use what's written in or next to the logo, never a guess from the file name.
-- Give each one an alt text of just the sponsor's name (for example `alt="Victoria Ballet"`, not "logo of…"), and link it to the sponsor's site **only if UBC's page links it**.
-- Consider moving the sponsors into a data file (`data/sponsors.json`, holding name, image, url, tier, and source) that `build.py` renders, the same way `season.json` drives the schedule.
-- Headings: the tier labels "Title Sponsors" and "Scholarship Sponsors" are plain `<p class="tier__label">` text. Make them real headings (`<h3>`) under the section's `<h2>` so screen readers and the outline get a proper structure, and make sure no heading is left empty.
-- Note: `assets/img/ensemble.jpg` uses `alt="" aria-hidden="true"` on purpose because it's decorative. That's correct, so leave it alone.
+### 2. Sponsors: done in [PR #2](https://github.com/elisalora/ubc-redesign/pull/2)
+The sponsors now come from `data/sponsors.json` (name, tier, image, url only where UBC links the logo, source), and `build.py` renders them. They match UBC's current [Scholarships & Sponsors page](https://universalballetcompetition.com/sponsors/): 3 title sponsors plus 26 scholarship sponsors. Each alt text is the sponsor's name (e.g. `alt="Vita Barre"`; the "VB" logo is Vita Barre, **not** Victoria Ballet). The tier labels are `<h3>`s.
+- Still open: one scholarship logo, an unlinked "GA/PD" monogram, hasn't been identified. Its alt is neutral (`Scholarship sponsor (GA/PD monogram)`) and it has no link. Don't guess. Only change it in `data/sponsors.json` once UBC confirms who it is.
+- If UBC's list changes, edit `data/sponsors.json` and rebuild. Never edit the logo markup by hand.
 
 ### 3. Closing band (`pages/index.body.html`, "Registration for the 2026–2027 season is open")
 Right now 12 of the 16 cities in `data/season.json` are `wait` (waitlist), 3 are `open`, and 1 is `sold`, so "registration is open" overstates it.
@@ -34,7 +31,7 @@ Right now 12 of the 16 cities in `data/season.json` are `wait` (waitlist), 3 are
 ### Acceptance criteria
 - [ ] No `TBC` anywhere in any built page (`grep -ri tbc *.html` returns nothing).
 - [ ] Every number on the page has a source recorded in the repo (a data-file field or a comment with the URL).
-- [ ] All 20 sponsor logos have a correct, distinct name as alt text. Links exist only where UBC links them. Tier labels are `<h3>`s with text.
+- [x] Sponsors (done in PR #2): every logo's alt text is the sponsor's name, links exist only where UBC links them, and the tier labels are `<h3>`s with text.
 - [ ] The closing-band wording is generated from `data/season.json` and matches the open/wait/sold counts.
 - [ ] Edits go in `pages/`, `partials/`, `data/`, or `build.py`. Never hand-edit the built `index.html`, `rules.html`, or `judges.html`.
 - [ ] `python3 build.py` runs, and `python3 build.py --check` passes.
